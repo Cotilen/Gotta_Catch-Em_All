@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/images.css">
+    <link rel="stylesheet" href="./css/root.css">
+
+    <script src="./js/app.js" defer type="module"></script>
+    <script src="./js/card-pokedex.js"></script>
+    <title>Pokedex</title>
+</head>
+
+<body>
+    <header>
+        <img src="./images/International_Pokémon_logo.svg.png" class="pokemon-img" alt="">
+        <nav class="menu-container">
+            <a href="/home" onclick="route()"> <img src="./images/pikachu-icon.png" alt=""> Home</a>
+            <a href="/pokedex" onclick="route() "><img class="nav-img" src="./images/pokedex.png" alt=""> Pokedex</a>
+            <a href="/games" onclick="route()"><img class="nav-img" src="./images/games.png" alt=""> Games</a>
+            <a href="/regions" onclick="route()"><img src="./images/regions.png" class="nav-img" alt=""> Regions</a>
+
+        </nav>
+    </header>
+    <main id="root">
+        <!-- <div class="main-pikachu">
+            <img src="../images/picachu.png" alt="">
+        </div> -->
+        <card-pokemon nome='bulb' number='000' type='grass' type_2="poison" img="../images/pokemons/1.png"></card-pokemon>
+
+    </main>
+    <footer>
+        <div>Copyright 2023 || Cleiton Cruz</div>
+    </footer>
+
+</body>
+
+</html>

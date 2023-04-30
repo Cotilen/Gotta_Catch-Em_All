@@ -1,0 +1,39 @@
+body {
+    display: grid;
+    grid-template-rows: 120px 1fr auto;
+    font-family: solid;
+    background-color: var(--cor-principal);
+    font-weight: 400;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.65rem 2rem .625rem 2rem;
+    align-items: center;
+}
+
+footer {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--cor-stroke);
+}
+
+.main-pikachu {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-container {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    gap: 10px;
+}
+
+.menu-container a {
+    display: flex;
+    align-items: center;
+    color: var(--cor-principal);
+    -webkit-text-stroke: 2px var(--cor-stroke);
+}
