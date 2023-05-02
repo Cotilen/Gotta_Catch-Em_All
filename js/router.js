@@ -1,12 +1,14 @@
 "use strict";
 
 import './app.js'
-import {pokedex} from './app.js'
+import {appPokedex, games, regions} from './app.js'
 
 
 const routes = {
   "/": "/pages/home.html",
-  "/pokedex": "/pages/pokedex.html"
+  "/pokedex": "/pages/pokedex.html",
+  "/games": "/pages/games.html",
+  "/regions": "/pages/regions.html"
 }
 
 const route = async () => {
@@ -22,9 +24,15 @@ const route = async () => {
 
   if (path == '/pokedex') {
     console.log('pokedex');
-    pokedex()
+    appPokedex()
   } else if (path == '/') {
     console.log('home');
+  } else if(path == '/games'){
+    console.log('Games');
+    games()
+  }else if (path == '/regions'){
+    console.log('Regions');
+    regions()
   }
 
 };
