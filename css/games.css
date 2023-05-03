@@ -1,0 +1,5 @@
+#container-games{
+    display: flex;
+    justify-content: start;
+    padding-left: 50px;
+}

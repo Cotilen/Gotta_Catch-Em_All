@@ -71,7 +71,7 @@ const pokedex = function(offset = 0, limit = 1282) {
         })).then((card) => {
 
 
-            const div = document.getElementById('container')
+            const div = document.getElementById('container-pokedex')
 
             div.replaceChildren(...card)
         })
@@ -155,7 +155,7 @@ const loadCard = function() {
 
         })).then((card) => {
 
-            const div = document.getElementById('container')
+            const div = document.getElementById('container-games')
 
             div.replaceChildren(...card)
 
@@ -228,8 +228,9 @@ const loadCard = function() {
 
             const link = document.createElement('a')
             link.id = regiao.region
-            link.href = "/detailRegion" 
+            link.href = "/detailRegions" 
             link.setAttribute('onclick','route()')
+
 
             const card = document.createElement('card-regions')
 

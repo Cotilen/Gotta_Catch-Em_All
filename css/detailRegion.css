@@ -1,0 +1,34 @@
+.detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.region-image {
+    max-width: 800px;
+    width: auto;
+    height: auto;
+    padding: 2rem;
+}
+
+.region {
+    font-size: 2rem;
+    color: var(--cor-principal);
+    -webkit-text-stroke: 2px var(--cor-stroke);
+    text-transform: capitalize;
+}
+
+.pokedex-regions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.title {
+    font-size: 1.5rem;
+    padding: 2rem;
+    color: var(--cor-principal);
+    -webkit-text-stroke: 2px #000;
+}
