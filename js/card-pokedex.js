@@ -286,7 +286,9 @@ class card_regions extends HTMLElement {
         
         .card-detail {
             display: flex;
-            color: #6390F0;
+            color: #f7ba2b;
+            -webkit-text-stroke: 2px #000;
+            transition: color -webkit-text-stroke 4s;
             flex-direction: column;
             display: flex;
             justify-content: center;
@@ -294,8 +296,7 @@ class card_regions extends HTMLElement {
             width: 100%;
             height: 100%;
             gap: 20px;
-            -webkit-text-stroke: 1px #6390F0;
-        }
+x        }
         
         .card .title {
             font-weight: bold;
@@ -303,8 +304,7 @@ class card_regions extends HTMLElement {
         }
         
         .card img {
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
+            
             width: 230px;
             height: auto;
             max-height:250px;
@@ -317,15 +317,7 @@ class card_regions extends HTMLElement {
             opacity: 0;
         }
         
-        .card:hover img {
-            opacity: 1;
-        }
-        
-        .card:hover .card-detail {
-            color: #f7ba2b;
-            -webkit-text-stroke: 2px #000;
-            transition: color -webkit-text-stroke 4s;
-        }
+    
         .generation, .title{
             margin:0;
         }
