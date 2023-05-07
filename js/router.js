@@ -1,7 +1,7 @@
 "use strict";
 
 import './app.js'
-import { appPokedex, detailRegion, games, regions } from './app.js'
+import { appPokedex, detailPokes, detailRegion, games, regions } from './app.js'
 
 
 const routes = {
@@ -9,7 +9,8 @@ const routes = {
     "/pokedex": "/pages/pokedex.html",
     "/games": "/pages/games.html",
     "/regions": "/pages/regions.html",
-    "/detailRegions": "/pages/detailRegions.html"
+    "/detailRegions": "/pages/detailRegions.html",
+    "/detailPokes": "/pages/detailPokes.html"
 }
 
 export const route = async() => {
@@ -41,6 +42,9 @@ export const route = async() => {
         console.log("Detalhe Região");
         console.log(localStorage.getItem('nameRegion'));
         detailRegion()
+    } else if (path == '/detailPokes') {
+        console.log('Pokes');
+        detailPokes()
     }
 
 };

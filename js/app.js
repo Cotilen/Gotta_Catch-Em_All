@@ -52,7 +52,10 @@ export function appPokedex() {
 
         pokeApi.getGenerations(offset, limit)
             .then((pokemons = []) => pokemons.map((pokes) => {
-                console.log();
+
+                const link = document.createElement('a')
+                link.href = "/detailPokes"
+                link.setAttribute('onclick', 'route()')
 
                 const pokedex = document.createElement('card-pokemon')
                 pokedex.classList.add(`${pokes.type}`)
@@ -66,9 +69,16 @@ export function appPokedex() {
                 pokedex.setAttribute('type', pokes.type)
                 pokedex.id = pokes.number
 
-                return pokedex
+                link.addEventListener('click', function() {
+                    localStorage.setItem('IdPoke', pokedex.id)
+
+                })
+
+                link.append(pokedex)
+                return link
 
             })).then((card) => {
+
 
 
                 const div = document.getElementById('container-pokedex')
@@ -370,6 +380,325 @@ export function detailRegion() {
                 div.replaceChildren(...card)
 
             })
+
+    }
+    loadCard()
+}
+
+export function detailPokes() {
+    let pokeApi = {}
+
+    const createCard = function(poke) {
+
+
+        const base = document.createElement('div')
+        base.classList.add('bar-chart')
+
+        const div_1 = document.createElement('div')
+        div_1.textContent = poke.stat.name
+        const bar_1 = document.createElement('div')
+        bar_1.classList.add('bar')
+        bar_1.style = `width:${poke.base_stat}%`
+        const value_1 = document.createElement('span')
+        value_1.classList.add('value')
+        value_1.textContent = poke.base_stat
+
+        bar_1.append(value_1)
+
+        base.append(div_1, bar_1)
+
+        return base
+    }
+    const createCarousel = function(carousel) {
+
+        const carrosel = document.createElement('div')
+        carrosel.classList.add('carrosel')
+
+        const container = document.createElement('div')
+        container.classList.add('container')
+        container.id = 'img'
+
+        const imgFront = document.createElement('img')
+        imgFront.src = carousel.front_default
+
+        const imgFrontShiny = document.createElement('img')
+        imgFrontShiny.src = carousel.front_shiny
+
+        const imgFrontDream = document.createElement('img')
+        imgFrontDream.src = carousel.other.dream_world.front_default
+
+        const imgFrontHome = document.createElement('img')
+        imgFrontHome.src = carousel.other.home.front_default
+
+        const imgFrontHomeShiny = document.createElement('img')
+        imgFrontHomeShiny.src = carousel.other.home.front_shiny
+
+        container.append(imgFront, imgFrontDream, imgFrontHome, imgFrontHomeShiny, imgFrontShiny)
+
+        carrosel.append(container)
+
+        return carrosel
+    }
+
+    //Função para criar o card de breeding
+    const createAbout = async function(infos) {
+
+        let url = infos.species.url
+        let response = await fetch(url)
+        let data = await response.json()
+
+        let height = (infos.height / 10)
+        let weight = (infos.weight / 100)
+        let abilities = `${infos.abilities[0].ability.name} , ${infos.abilities[1].ability.name}`
+
+        const card = document.createElement('div')
+        card.classList.add('card')
+
+        const about = document.createElement('span')
+        about.textContent = "About"
+        const breeding = document.createElement('span')
+        breeding.textContent = 'Breeding'
+
+        const divAbout = document.createElement('div')
+        divAbout.classList.add('about')
+
+        const divBreeding = document.createElement('div')
+        divBreeding.classList.add('breeding')
+
+        const namesAbout = document.createElement('ol')
+        namesAbout.classList.add('names')
+
+        const infosAbout = document.createElement('ol')
+        infosAbout.classList.add('infos')
+
+        const heightName = document.createElement('li')
+        heightName.textContent = 'Height:'
+        heightName.classList.add('names-about')
+
+        const weightName = document.createElement('li')
+        weightName.textContent = 'Weight:'
+        weightName.classList.add('names-about')
+
+        const abilitiesName = document.createElement('li')
+        abilitiesName.textContent = 'Abilities:'
+        abilitiesName.classList.add('names-about')
+
+        const heightValue = document.createElement('li')
+        heightValue.textContent = `${height}m`
+        heightValue.classList.add('infos-about')
+
+        const weightValue = document.createElement('li')
+        weightValue.textContent = `${weight}kg`
+        weightValue.classList.add('infos-about')
+
+        const abilitiesValue = document.createElement('li')
+        abilitiesValue.textContent = abilities
+        abilitiesValue.classList.add('infos-about')
+
+        const namesBreed = document.createElement('ol')
+        namesBreed.classList.add('names')
+
+        const infosBreed = document.createElement('ol')
+        infosBreed.classList.add('infos')
+
+        const eggName = document.createElement('li')
+        eggName.textContent = 'Egg Groups:'
+        eggName.classList.add('names-about')
+
+        const eggCircleName = document.createElement('li')
+        eggCircleName.textContent = 'Egg Circle:'
+        eggCircleName.classList.add('names-about')
+
+        const eggValue = document.createElement('li')
+        eggValue.textContent = `${data.egg_groups[0].name}`
+        eggValue.classList.add('infos-about')
+
+        const eggCircleValue = document.createElement('li')
+        eggCircleValue.textContent = `${data.egg_groups[1].name}`
+        eggCircleValue.classList.add('infos-about')
+
+        namesAbout.append(heightName, weightName, abilitiesName)
+        infosAbout.append(heightValue, weightValue, abilitiesValue)
+
+        namesBreed.append(eggName, eggCircleName)
+        infosBreed.append(eggValue, eggCircleValue)
+
+        divAbout.append(namesAbout, infosAbout)
+        divBreeding.append(namesBreed, infosBreed)
+
+        card.append(about, divAbout, breeding, divBreeding)
+
+        return card
+
+    }
+
+    async function createImage(url) {
+
+        let response = await fetch(url)
+        let data = await response.json()
+
+        return data.sprites.front_default
+
+    }
+
+    //Função para criar a linha evolutória
+    const createEvolution = async function(evolucao) {
+
+        let url = evolucao
+
+        let response = await fetch(url)
+        let data = await response.json()
+
+        console.log(data);
+
+        let urlImage = (data.chain.species.url).replace('-species/', '/')
+
+
+        const evolution = document.createElement('div')
+        evolution.classList.add('evolution')
+
+        const span = document.createElement('h1')
+        span.textContent = "Evolution Chain"
+
+        const divEvolucoes = document.createElement('div')
+        divEvolucoes.classList.add('evolucoes')
+
+        const div_1 = document.createElement('div')
+        const div_2 = document.createElement('div')
+        const div_3 = document.createElement('div')
+
+        const poke_1 = document.createElement('div')
+        poke_1.classList.add('poke')
+
+
+        const pokeName_1 = document.createElement('h2')
+        pokeName_1.textContent = data.chain.species.name
+
+        const img_1 = document.createElement('img')
+        img_1.src = await createImage(urlImage)
+
+        const nivel_1 = document.createElement('div')
+        nivel_1.classList.add('seta')
+
+        const up_1 = document.createElement('span')
+        up_1.textContent = `Nv:${data.chain.evolves_to[0].evolution_details[0].min_level}+`
+        up_1.classList.add('seta')
+
+        const poke_2 = document.createElement('div')
+        poke_2.classList.add('poke')
+
+        const pokeName_2 = document.createElement('h2')
+        pokeName_2.textContent = data.chain.evolves_to[0].species.name
+
+        //Mudando a url para pegar a imagem de outro pokemon
+        urlImage = (data.chain.evolves_to[0].species.url).replace('-species/', '/')
+
+        const img_2 = document.createElement('img')
+        img_2.src = await createImage(urlImage)
+
+        const up_2 = document.createElement('span')
+        up_2.textContent = `Nv:${data.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level}+`
+        up_2.classList.add('seta')
+
+
+        console.log(data.chain.evolves_to[0].evolves_to[0].species.name);
+
+        const poke_3 = document.createElement('div')
+        poke_3.classList.add('poke')
+
+        const pokeName_3 = document.createElement('h2')
+        pokeName_3.textContent = data.chain.evolves_to[0].evolves_to[0].species.name
+
+        //Mudando a url para pegar a imagem de outro pokemon
+        urlImage = (data.chain.evolves_to[0].evolves_to[0].species.url).replace('-species/', '/')
+
+        const img_3 = document.createElement('img')
+        img_3.src = await createImage(urlImage)
+
+        div_1.append(img_1)
+        div_2.append(img_2)
+        div_3.append(img_3)
+        poke_1.append(pokeName_1, div_1)
+        poke_2.append(pokeName_2, div_2)
+        poke_3.append(pokeName_3, div_3)
+        divEvolucoes.append(poke_1, up_1, poke_2, up_2, poke_3)
+
+        evolution.append(span, divEvolucoes)
+
+        return evolution
+
+    }
+
+    const loadCard = async function() {
+
+        let id = localStorage.getItem('IdPoke')
+        let url = `https://pokeapi.co/api/v2/pokemon/${id}`
+
+        let response = await fetch(url)
+        let data = await response.json()
+
+        let stats = data.stats.map(createCard)
+
+        let carousel = createCarousel(data.sprites)
+
+        let about = await createAbout(data)
+
+        // Função que criar o card de status
+        const cardStatus = function() {
+            const card = document.createElement('div')
+            card.classList.add('card')
+
+            const status = document.createElement('div')
+            status.classList.add('stats')
+
+            const title = document.createElement('span')
+            title.textContent = 'Base Status'
+
+            status.append(title, ...stats)
+
+            card.append(status)
+
+            return card
+
+        }
+
+        //Função para criar o carrosel
+        function carousel_img() {
+            const imgs = document.getElementById('img')
+            const img = document.querySelectorAll('#img img')
+
+            let idx = 0
+
+            function carrosel() {
+                idx++
+
+                if (idx > img.length - 1) {
+                    idx = 0
+                }
+
+                imgs.style.transform = `translateX(${-idx*400}px)`
+            }
+            setInterval(carrosel, 3000)
+        }
+
+        //Fetch para criar a linha evolutoria
+
+        let url_evolution = data.species.url
+
+        let response_evolution = await fetch(url_evolution)
+        let data_evolution = await response_evolution.json()
+
+        let evolution = await createEvolution(data_evolution.evolution_chain.url)
+
+
+
+
+        const container = document.getElementById('container-detailPokes')
+
+        container.append(cardStatus(), carousel, about, evolution)
+
+
+        carousel_img()
 
     }
     loadCard()

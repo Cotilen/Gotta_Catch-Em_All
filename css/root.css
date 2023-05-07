@@ -24,6 +24,11 @@ ol {
     src: url(../fonts/Pokemon\ Hollow.ttf);
 }
 
+@font-face {
+    font-family: game;
+    src: url(../fonts/PressStart2P-Regular.ttf);
+}
+
 :root {
     --cor-principal: #FBCD3C;
     --cor-stroke: #6390F0;

@@ -4,9 +4,15 @@ body {
     font-family: solid;
     background-color: var(--cor-principal);
     font-weight: 400;
+    letter-spacing: .2rem;
 }
 
 card-regions {
+    position: relative;
+    z-index: -999;
+}
+
+card-pokemon {
     position: relative;
     z-index: -999;
 }

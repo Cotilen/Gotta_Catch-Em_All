@@ -578,6 +578,239 @@ class btn_pokemon extends HTMLElement {
         return button
     }
 }
+class card_stats extends HTMLElement {
+    constructor() {
+        super()
+
+        this.shadow = this.attachShadow({ mode: 'open' })
+
+        this.title = 'Title'
+        this.nameStatus_1 = 'Hp'
+        this.nameStatus_2 = 'Attack'
+        this.nameStatus_3 = 'Defense'
+        this.nameStatus_4 = 'Special-Attack'
+        this.nameStatus_5 = 'Special-Defense'
+        this.nameStatus_6 = 'Speed'
+        this.valueStatus_1 = '10'
+        this.valueStatus_2 = '20'
+        this.valueStatus_3 = '30'
+        this.valueStatus_4 = '40'
+        this.valueStatus_5 = '50'
+        this.valueStatus_6 = '60'
+    }
+
+    static get observedAttributes() {
+        return ['title', 'nameStatus_1', 'nameStatus_2', 'nameStatus_3', 'nameStatus_4', 'nameStatus_5', 'nameStatus_6',
+            'valueStatus_1', 'valueStatus_2.', 'valueStatus_3', 'valueStatus_4', 'valueStatus_5', 'valueStatus_6'
+        ]
+
+    }
+
+    attributeChangedCallback(nameAttr, oldValue, newValue) {
+        this[nameAttr] = newValue
+    }
+
+    connectedCallback() {
+        this.shadow.appendChild(this.component())
+        this.shadow.appendChild(this.styles())
+    }
+
+    styles() {
+        const css = document.createElement('style')
+        css.textContent = `
+        .card {
+            width: var(--card-width);
+            height: var(--card-height);
+            padding: 3px;
+            position: relative;
+            border-radius: 1rem;
+            text-align: center;
+            display: flex;
+            font-size: 1.5em;
+            color: #000;
+            cursor: pointer;
+            font-family: solid;
+            flex-direction: column;
+            margin: 1rem;
+            background-color: green;
+        }
+        
+        .card:hover:before,
+        .card:hover:after {
+            animation: none;
+        }
+        
+        .card::before {
+            content: "";
+            width: 104%;
+            height: 102%;
+            border-radius: 8px;
+            background-image: linear-gradient( var(--rotate), yellow, #6390F0 43%, yellow);
+            position: absolute;
+            z-index: -1;
+            top: -1%;
+            left: -2%;
+            animation: spin 2.5s linear infinite;
+        }
+        
+        .card::after {
+            position: absolute;
+            content: "";
+            top: calc(var(--card-height) / 6);
+            left: 0;
+            right: 0;
+            z-index: -1;
+            height: 100%;
+            width: 100%;
+            margin: 0 auto;
+            transform: scale(0.8);
+            filter: blur(calc(var(--card-height) / 6));
+            background-image: linear-gradient( var(--rotate), yellow, #6390F0 43%, yellow);
+            opacity: 1;
+            transition: opacity .5s;
+            animation: spin 2.5s linear infinite;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: start;
+            gap: 10px;
+            height: 18px;
+            width: 100%;
+            font-size: 1rem;
+            text-transform: capitalize;
+            color: #fff;
+            -webkit-text-stroke: 1px #000;
+            letter-spacing: 0.2rem;
+        }
+        
+        .bar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100%;
+            background-color: green;
+            border-radius: 2rem;
+            border: 1px solid #000;
+            margin-right: 10px;
+        }
+        
+        .value {
+            margin-right: 5px;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        
+        .stats {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding-top: 1REM;
+        }
+        
+        .card span {
+            color: #000;
+            letter-spacing: .2rem;
+
+        }
+        
+        `
+
+
+        return css
+
+    }
+    component() {
+
+        const card = document.createElement('div')
+        card.classList.add('card')
+
+        const stats = document.createElement('div')
+        stats.classList.add('stats')
+
+        const title = document.createElement('span')
+        title.textContent = this.title
+
+        const base = document.createElement('div')
+        base.classList.add('bar-chart')
+
+        const div_1 = document.createElement('div')
+        div_1.textContent = this.nameStatus_1
+        const bar_1 = document.createElement('div')
+        bar_1.classList.add('bar')
+        bar_1.style = `width:${this.valueStatus_1}%`
+        const value_1 = document.createElement('span')
+        value_1.classList.add('value')
+        value_1.textContent = this.valueStatus_1
+
+        const div_2 = document.createElement('div')
+        div_2.textContent = this.nameStatus_2
+        const bar_2 = document.createElement('div')
+        bar_2.classList.add('bar')
+        bar_2.style = `width:${this.valueStatus_2}%`
+        const value_2 = document.createElement('span')
+        value_2.classList.add('value')
+        value_2.textContent = this.valueStatus_2
+
+        const div_3 = document.createElement('div')
+        div_3.textContent = this.nameStatus_3
+        const bar_3 = document.createElement('div')
+        bar_3.classList.add('bar')
+        bar_3.style = `width:${this.valueStatus_3}%`
+        const value_3 = document.createElement('span')
+        value_3.classList.add('value')
+        value_3.textContent = this.valueStatus_3
+
+        const div_4 = document.createElement('div')
+        div_4.textContent = this.nameStatus_4
+        const bar_4 = document.createElement('div')
+        bar_4.classList.add('bar')
+        bar_4.style = `width:${this.valueStatus_4}%`
+        const value_4 = document.createElement('span')
+        value_4.classList.add('value')
+        value_4.textContent = this.valueStatus_4
+
+        const div_5 = document.createElement('div')
+        div_5.textContent = this.nameStatus_5
+        const bar_5 = document.createElement('div')
+        bar_5.classList.add('bar')
+        bar_5.style = `width:${this.valueStatus_5}%`
+        const value_5 = document.createElement('span')
+        value_5.classList.add('value')
+        value_5.textContent = this.valueStatus_5
+
+        const div_6 = document.createElement('div')
+        div_6.textContent = this.nameStatus_6
+        const bar_6 = document.createElement('div')
+        bar_6.classList.add('bar')
+        bar_6.style = `width:${this.valueStatus_6}%`
+        const value_6 = document.createElement('span')
+        value_6.classList.add('value')
+        value_6.textContent = this.valueStatus_6
+
+        bar_1.append(value_1)
+        bar_2.append(value_2)
+        bar_3.append(value_3)
+        bar_4.append(value_4)
+        bar_5.append(value_5)
+        bar_6.append(value_6)
+
+        base.append(div_1, bar_1,
+            div_2, bar_2,
+            div_3, bar_3,
+            div_4, bar_4,
+            div_5, bar_5,
+            div_6, bar_6, )
+
+        stats.append(title, base)
+
+        card.append(stats)
+
+        return card
+    }
+}
 
 customElements.define('card-pokemon', card_pokedex)
 customElements.define('card-regions', card_regions)
