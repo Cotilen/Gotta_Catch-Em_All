@@ -2,6 +2,14 @@
 
 import { route } from './router.js'
 
+const menuButton = document.querySelector('.menu-button');
+const menu = document.querySelector('.menu');
+
+menuButton.addEventListener('click', function() {
+    menu.classList.toggle('menu--open');
+});
+
+
 //Função para carregar a pagina pokedex
 export function appPokedex() {
 

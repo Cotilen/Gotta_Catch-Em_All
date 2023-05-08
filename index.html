@@ -22,13 +22,32 @@
 <body>
     <header>
         <img src="./images/International_Pokémon_logo.svg.png" class="pokemon-img" alt="">
-        <nav class="menu-container">
+        <nav class="menu-container" id="menu-container">
             <a href="/" onclick="route()"> <img src="./images/pikachu-icon.png" alt=""> Home</a>
             <a href="/pokedex" onclick="route() "><img class="nav-img" src="./images/pokedex.png" alt=""> Pokedex</a>
             <a href="/games" onclick="route()"><img class="nav-img" src="./images/games.png" alt=""> Games</a>
             <a href="/regions" onclick="route()"><img src="./images/regions.png" class="nav-img" alt=""> Regions</a>
-
         </nav>
+        <button class="menu-button"><img src="./images/pokebola-resp.png" alt=""></button>
+
+        <nav class="menu">
+            <ul class="menu-ul">
+                <li>
+                    <a href="/" onclick="route()"> <img src="./images/pikachu-icon.png" alt=""></a>
+                </li>
+                <li>
+                    <a href="/pokedex" onclick="route() "><img class="nav-img" src="./images/pokedex.png" alt=""></a>
+                </li>
+                <li>
+                    <a href="/games" onclick="route()"><img class="nav-img" src="./images/games.png" alt=""></a>
+                </li>
+                <li>
+                    <a href="/regions" onclick="route()"><img src="./images/regions.png" class="nav-img" alt=""></a>
+                </li>
+            </ul>
+        </nav>
+
+
     </header>
     <main id="root">
         <div class="container" id="container">
@@ -36,6 +55,8 @@
                 <img src="../images/pikachu.png" alt="">
             </div>
         </div>
+        <div class="container" id="container-pokedex"></div>
+
     </main>
     <footer>
         <div>Copyright 2023 || Cleiton Cruz</div>

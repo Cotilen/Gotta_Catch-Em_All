@@ -94,6 +94,33 @@ footer {
     gap: 3rem;
 }
 
+.menu-button {
+    display: none;
+    /* esconde o botão em telas maiores */
+}
+
+.menu {
+    display: none;
+    /* esconde o menu por padrão */
+}
+
+.menu-ul {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .menu--open {
+        display: block;
+    }
+    #menu-container {
+        display: none;
+    }
+    .menu-button {
+        display: block;
+        /* exibe o botão em telas menores */
+    }
+}
+
 @media (max-width: 900px) {
     .pokemon-img {
         display: none;
