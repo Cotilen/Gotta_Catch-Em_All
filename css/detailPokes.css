@@ -7,13 +7,12 @@
 }
 
 .carrosel {
-    box-shadow: 2px 2px 2px 2px green;
     overflow: hidden;
-    height: 400px;
-    width: 400px;
+    height: 375px;
+    width: 375px;
 }
 
-.container {
+.container-pokes {
     display: flex;
     transition: transform 0.5s ease-in-out;
     transform: translateX(0);
@@ -21,12 +20,11 @@
 
 main img {
     object-fit: cover;
-    height: 400px;
-    width: 400px;
+    height: 375px;
+    width: 375px;
 }
 
 .details {
-    background-color: green;
     height: 500px;
     width: 350px;
     text-align: center;
@@ -84,7 +82,6 @@ main img {
     cursor: pointer;
     font-family: solid;
     flex-direction: column;
-    background-color: green;
 }
 
 .card:hover:before,
@@ -132,13 +129,6 @@ main img {
     }
 }
 
-@media (max-width: 1030px) {
-    #main-detail-pokemons {
-        flex-direction: column-reverse;
-        gap: 3rem;
-    }
-}
-
 .bar-chart {
     font-family: game;
     text-align: end;
@@ -160,9 +150,9 @@ main img {
     justify-content: flex-end;
     align-items: center;
     height: 100%;
-    background-color: green;
     border-radius: 2rem;
     border: 1px solid #000;
+    max-width: 100%;
 }
 
 .value {
@@ -202,7 +192,6 @@ main img {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: green;
 }
 
 .evolucoes {
@@ -210,6 +199,7 @@ main img {
     flex-direction: row;
     align-items: center;
     gap: 2rem;
+    justify-content: center;
 }
 
 .seta {
@@ -227,4 +217,32 @@ main img {
 
 .evolution h2 {
     text-transform: capitalize;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+}
+
+@media (max-width: 1030px) {
+    #container-detailPokes {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    .evolucoes {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1rem;
+    }
 }

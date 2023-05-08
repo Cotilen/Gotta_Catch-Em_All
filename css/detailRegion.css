@@ -32,3 +32,33 @@
     color: var(--cor-principal);
     -webkit-text-stroke: 2px #000;
 }
+
+@media (max-width: 900px) {
+    .region-image {
+        width: 600px;
+        height: 402px;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 680px) {
+    .region-image {
+        width: 400px;
+        height: 269px;
+        padding: 1rem;
+    }
+    .detail {
+        padding-top: 0;
+    }
+    .region {
+        padding-top: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .region-image {
+        width: 350px;
+        height: 235px;
+        padding: 1rem;
+    }
+}

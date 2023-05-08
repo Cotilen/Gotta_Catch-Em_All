@@ -71,12 +71,11 @@ footer {
 #container {
     display: flex;
     justify-content: center;
-    min-height: 600px;
 }
 
 #container img {
-    width: 1000px;
-    height: 700px;
+    width: 900px;
+    height: 600px;
 }
 
 .region {
@@ -95,8 +94,37 @@ footer {
     gap: 3rem;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     .pokemon-img {
         display: none;
+    }
+    #container img {
+        width: 500px;
+    }
+    #container-regions {
+        width: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        width: 375px;
+    }
+    header img {
+        display: none;
+    }
+    #container img {
+        width: 350px;
+        height: 400px;
+    }
+    #container {
+        width: 350px;
+        justify-self: center;
+    }
+    footer {
+        width: 350px;
+    }
+    #container-games {
+        padding-left: 30px;
     }
 }

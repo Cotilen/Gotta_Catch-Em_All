@@ -386,8 +386,6 @@ export function detailRegion() {
 }
 
 export function detailPokes() {
-    let pokeApi = {}
-
     const createCard = function(poke) {
 
 
@@ -399,6 +397,14 @@ export function detailPokes() {
         const bar_1 = document.createElement('div')
         bar_1.classList.add('bar')
         bar_1.style = `width:${poke.base_stat}%`
+        if (poke.base_stat < 50) {
+            bar_1.classList.add('red')
+        } else if (poke.base_stat <= 100) {
+            bar_1.classList.add('green')
+        } else
+            bar_1.classList.add('blue')
+
+        console.log(bar_1.style.width);
         const value_1 = document.createElement('span')
         value_1.classList.add('value')
         value_1.textContent = poke.base_stat
@@ -415,7 +421,7 @@ export function detailPokes() {
         carrosel.classList.add('carrosel')
 
         const container = document.createElement('div')
-        container.classList.add('container')
+        container.classList.add('container-pokes')
         container.id = 'img'
 
         const imgFront = document.createElement('img')
@@ -440,99 +446,10 @@ export function detailPokes() {
         return carrosel
     }
 
-    //Função para criar o card de breeding
-    const createAbout = async function(infos) {
 
-        let url = infos.species.url
-        let response = await fetch(url)
-        let data = await response.json()
-
-        let height = (infos.height / 10)
-        let weight = (infos.weight / 100)
-        let abilities = `${infos.abilities[0].ability.name} , ${infos.abilities[1].ability.name}`
-
-        const card = document.createElement('div')
-        card.classList.add('card')
-
-        const about = document.createElement('span')
-        about.textContent = "About"
-        const breeding = document.createElement('span')
-        breeding.textContent = 'Breeding'
-
-        const divAbout = document.createElement('div')
-        divAbout.classList.add('about')
-
-        const divBreeding = document.createElement('div')
-        divBreeding.classList.add('breeding')
-
-        const namesAbout = document.createElement('ol')
-        namesAbout.classList.add('names')
-
-        const infosAbout = document.createElement('ol')
-        infosAbout.classList.add('infos')
-
-        const heightName = document.createElement('li')
-        heightName.textContent = 'Height:'
-        heightName.classList.add('names-about')
-
-        const weightName = document.createElement('li')
-        weightName.textContent = 'Weight:'
-        weightName.classList.add('names-about')
-
-        const abilitiesName = document.createElement('li')
-        abilitiesName.textContent = 'Abilities:'
-        abilitiesName.classList.add('names-about')
-
-        const heightValue = document.createElement('li')
-        heightValue.textContent = `${height}m`
-        heightValue.classList.add('infos-about')
-
-        const weightValue = document.createElement('li')
-        weightValue.textContent = `${weight}kg`
-        weightValue.classList.add('infos-about')
-
-        const abilitiesValue = document.createElement('li')
-        abilitiesValue.textContent = abilities
-        abilitiesValue.classList.add('infos-about')
-
-        const namesBreed = document.createElement('ol')
-        namesBreed.classList.add('names')
-
-        const infosBreed = document.createElement('ol')
-        infosBreed.classList.add('infos')
-
-        const eggName = document.createElement('li')
-        eggName.textContent = 'Egg Groups:'
-        eggName.classList.add('names-about')
-
-        const eggCircleName = document.createElement('li')
-        eggCircleName.textContent = 'Egg Circle:'
-        eggCircleName.classList.add('names-about')
-
-        const eggValue = document.createElement('li')
-        eggValue.textContent = `${data.egg_groups[0].name}`
-        eggValue.classList.add('infos-about')
-
-        const eggCircleValue = document.createElement('li')
-        eggCircleValue.textContent = `${data.egg_groups[1].name}`
-        eggCircleValue.classList.add('infos-about')
-
-        namesAbout.append(heightName, weightName, abilitiesName)
-        infosAbout.append(heightValue, weightValue, abilitiesValue)
-
-        namesBreed.append(eggName, eggCircleName)
-        infosBreed.append(eggValue, eggCircleValue)
-
-        divAbout.append(namesAbout, infosAbout)
-        divBreeding.append(namesBreed, infosBreed)
-
-        card.append(about, divAbout, breeding, divBreeding)
-
-        return card
-
-    }
 
     async function createImage(url) {
+        console.log(url);
 
         let response = await fetch(url)
         let data = await response.json()
@@ -541,93 +458,6 @@ export function detailPokes() {
 
     }
 
-    //Função para criar a linha evolutória
-    const createEvolution = async function(evolucao) {
-
-        let url = evolucao
-
-        let response = await fetch(url)
-        let data = await response.json()
-
-        console.log(data);
-
-        let urlImage = (data.chain.species.url).replace('-species/', '/')
-
-
-        const evolution = document.createElement('div')
-        evolution.classList.add('evolution')
-
-        const span = document.createElement('h1')
-        span.textContent = "Evolution Chain"
-
-        const divEvolucoes = document.createElement('div')
-        divEvolucoes.classList.add('evolucoes')
-
-        const div_1 = document.createElement('div')
-        const div_2 = document.createElement('div')
-        const div_3 = document.createElement('div')
-
-        const poke_1 = document.createElement('div')
-        poke_1.classList.add('poke')
-
-
-        const pokeName_1 = document.createElement('h2')
-        pokeName_1.textContent = data.chain.species.name
-
-        const img_1 = document.createElement('img')
-        img_1.src = await createImage(urlImage)
-
-        const nivel_1 = document.createElement('div')
-        nivel_1.classList.add('seta')
-
-        const up_1 = document.createElement('span')
-        up_1.textContent = `Nv:${data.chain.evolves_to[0].evolution_details[0].min_level}+`
-        up_1.classList.add('seta')
-
-        const poke_2 = document.createElement('div')
-        poke_2.classList.add('poke')
-
-        const pokeName_2 = document.createElement('h2')
-        pokeName_2.textContent = data.chain.evolves_to[0].species.name
-
-        //Mudando a url para pegar a imagem de outro pokemon
-        urlImage = (data.chain.evolves_to[0].species.url).replace('-species/', '/')
-
-        const img_2 = document.createElement('img')
-        img_2.src = await createImage(urlImage)
-
-        const up_2 = document.createElement('span')
-        up_2.textContent = `Nv:${data.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level}+`
-        up_2.classList.add('seta')
-
-
-        console.log(data.chain.evolves_to[0].evolves_to[0].species.name);
-
-        const poke_3 = document.createElement('div')
-        poke_3.classList.add('poke')
-
-        const pokeName_3 = document.createElement('h2')
-        pokeName_3.textContent = data.chain.evolves_to[0].evolves_to[0].species.name
-
-        //Mudando a url para pegar a imagem de outro pokemon
-        urlImage = (data.chain.evolves_to[0].evolves_to[0].species.url).replace('-species/', '/')
-
-        const img_3 = document.createElement('img')
-        img_3.src = await createImage(urlImage)
-
-        div_1.append(img_1)
-        div_2.append(img_2)
-        div_3.append(img_3)
-        poke_1.append(pokeName_1, div_1)
-        poke_2.append(pokeName_2, div_2)
-        poke_3.append(pokeName_3, div_3)
-        divEvolucoes.append(poke_1, up_1, poke_2, up_2, poke_3)
-
-        evolution.append(span, divEvolucoes)
-
-        return evolution
-
-    }
 
     const loadCard = async function() {
 
@@ -639,14 +469,265 @@ export function detailPokes() {
 
         let stats = data.stats.map(createCard)
 
-        let carousel = createCarousel(data.sprites)
+        //Função para criar a linha evolutória
+        const createEvolution = async function(evolucao) {
 
-        let about = await createAbout(data)
+            let url = evolucao
+
+            let response = await fetch(url)
+            let data_1 = await response.json()
+
+            let urlImage = (data_1.chain.species.url).replace('-species/', '/')
+
+
+            const evolution = document.createElement('div')
+            evolution.classList.add('evolution')
+
+            const span = document.createElement('h1')
+            span.textContent = "Evolution Chain"
+
+            const divEvolucoes = document.createElement('div')
+            divEvolucoes.classList.add('evolucoes')
+
+            console.log(data.types[0].type.name);
+            const div_1 = document.createElement('div')
+            div_1.classList.add(`${data.types[0].type.name}`)
+            const div_2 = document.createElement('div')
+            div_2.classList.add(`${data.types[0].type.name}`)
+            const div_3 = document.createElement('div')
+            div_3.classList.add(`${data.types[0].type.name}`)
+
+
+            const poke_1 = document.createElement('div')
+            poke_1.classList.add('poke')
+
+
+            const pokeName_1 = document.createElement('h2')
+            pokeName_1.textContent = data_1.chain.species.name
+
+            const img_1 = document.createElement('img')
+            img_1.src = await createImage(urlImage)
+
+            const nivel_1 = document.createElement('div')
+            nivel_1.classList.add('seta')
+
+            if ((data_1.chain.evolves_to).length == 0) {
+                div_1.append(img_1)
+                poke_1.append(pokeName_1, div_1)
+                divEvolucoes.append(poke_1)
+
+                evolution.append(span, divEvolucoes)
+
+                return evolution
+            }
+
+            if ((data_1.chain.evolves_to[0]).length == 0) {
+
+                const up_1 = document.createElement('span')
+                up_1.textContent = `Nv:${data_1.chain.evolves_to[0].evolution_details[0].min_level}+`
+                up_1.classList.add('seta')
+
+                div_1.append(img_1)
+                poke_1.append(pokeName_1, div_1)
+                divEvolucoes.append(poke_1)
+
+                evolution.append(span, divEvolucoes)
+
+                return evolution
+
+
+            } else {
+
+                const up_1 = document.createElement('span')
+                up_1.textContent = `Nv:${data_1.chain.evolves_to[0].evolution_details[0].min_level}+`
+                up_1.classList.add('seta')
+
+                const poke_2 = document.createElement('div')
+                poke_2.classList.add('poke')
+
+                const pokeName_2 = document.createElement('h2')
+                pokeName_2.textContent = data_1.chain.evolves_to[0].species.name
+
+                //Mudando a url para pegar a imagem de outro pokemon
+                urlImage = (data_1.chain.evolves_to[0].species.url).replace('-species/', '/')
+
+                const img_2 = document.createElement('img')
+                img_2.src = await createImage(urlImage)
+
+
+                if ((data_1.chain.evolves_to[0].evolves_to).length == 0) {
+                    div_1.append(img_1)
+                    div_2.append(img_2)
+                    poke_1.append(pokeName_1, div_1)
+                    poke_2.append(pokeName_2, div_2)
+                    divEvolucoes.append(poke_1, up_1, poke_2, )
+
+                    evolution.append(span, divEvolucoes)
+
+                    return evolution
+                } else {
+                    const up_2 = document.createElement('span')
+                    up_2.textContent = `Nv:${data_1.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level}+`
+                    up_2.classList.add('seta')
+
+                    const poke_3 = document.createElement('div')
+                    poke_3.classList.add('poke')
+
+                    const pokeName_3 = document.createElement('h2')
+                    pokeName_3.textContent = data_1.chain.evolves_to[0].evolves_to[0].species.name
+
+                    //Mudando a url para pegar a imagem de outro pokemon
+                    urlImage = (data_1.chain.evolves_to[0].evolves_to[0].species.url).replace('-species/', '/')
+
+                    const img_3 = document.createElement('img')
+                    img_3.src = await createImage(urlImage)
+
+                    div_1.append(img_1)
+                    div_2.append(img_2)
+                    div_3.append(img_3)
+                    poke_1.append(pokeName_1, div_1)
+                    poke_2.append(pokeName_2, div_2)
+                    poke_3.append(pokeName_3, div_3)
+                    divEvolucoes.append(poke_1, up_1, poke_2, up_2, poke_3)
+
+                    evolution.append(span, divEvolucoes)
+
+                    return evolution
+
+                }
+
+            }
+
+        }
+
+        //Função para criar o card de breeding
+        const createAbout = async function(infos) {
+
+            let url = infos.species.url
+            let response = await fetch(url)
+            let data_2 = await response.json()
+
+            let height = (infos.height / 10)
+            let weight = (infos.weight / 100)
+            let abilities = ''
+
+            console.log(infos.abilities);
+            if ((infos.abilities).length == 1) {
+                abilities = `${infos.abilities[0].ability.name}`
+
+            } else {
+                abilities = `${infos.abilities[0].ability.name} , ${infos.abilities[1].ability.name}`
+            }
+
+            const card = document.createElement('div')
+            card.classList.add('card')
+            card.classList.add(`${data.types[0].type.name}`)
+
+
+            const about = document.createElement('span')
+            about.textContent = "About"
+            const breeding = document.createElement('span')
+            breeding.textContent = 'Breeding'
+
+            const divAbout = document.createElement('div')
+            divAbout.classList.add('about')
+
+            const divBreeding = document.createElement('div')
+            divBreeding.classList.add('breeding')
+
+            const namesAbout = document.createElement('ol')
+            namesAbout.classList.add('names')
+
+            const infosAbout = document.createElement('ol')
+            infosAbout.classList.add('infos')
+
+            const heightName = document.createElement('li')
+            heightName.textContent = 'Height:'
+            heightName.classList.add('names-about')
+
+            const weightName = document.createElement('li')
+            weightName.textContent = 'Weight:'
+            weightName.classList.add('names-about')
+
+            const abilitiesName = document.createElement('li')
+            abilitiesName.textContent = 'Abilities:'
+            abilitiesName.classList.add('names-about')
+
+            const heightValue = document.createElement('li')
+            heightValue.textContent = `${height}m`
+            heightValue.classList.add('infos-about')
+
+            const weightValue = document.createElement('li')
+            weightValue.textContent = `${weight}kg`
+            weightValue.classList.add('infos-about')
+
+            const abilitiesValue = document.createElement('li')
+            abilitiesValue.textContent = abilities
+            abilitiesValue.classList.add('infos-about')
+
+            const namesBreed = document.createElement('ol')
+            namesBreed.classList.add('names')
+
+            const infosBreed = document.createElement('ol')
+            infosBreed.classList.add('infos')
+
+            const eggName = document.createElement('li')
+            eggName.textContent = 'Egg Groups:'
+            eggName.classList.add('names-about')
+
+            const eggValue = document.createElement('li')
+            eggValue.textContent = `${data_2.egg_groups[0].name}`
+            eggValue.classList.add('infos-about')
+
+            if ((data_2.egg_groups).length == 1) {
+
+                namesAbout.append(heightName, weightName, abilitiesName)
+                infosAbout.append(heightValue, weightValue, abilitiesValue)
+
+                namesBreed.append(eggName)
+                infosBreed.append(eggValue)
+
+                divAbout.append(namesAbout, infosAbout)
+                divBreeding.append(namesBreed, infosBreed)
+
+                card.append(about, divAbout, breeding, divBreeding)
+
+                return card
+
+            } else {
+                const eggCircleName = document.createElement('li')
+                eggCircleName.textContent = 'Egg Circle:'
+                eggCircleName.classList.add('names-about')
+
+
+                const eggCircleValue = document.createElement('li')
+                eggCircleValue.textContent = `${data_2.egg_groups[1].name}`
+                eggCircleValue.classList.add('infos-about')
+
+                namesAbout.append(heightName, weightName, abilitiesName)
+                infosAbout.append(heightValue, weightValue, abilitiesValue)
+
+                namesBreed.append(eggName, eggCircleName)
+                infosBreed.append(eggValue, eggCircleValue)
+
+                divAbout.append(namesAbout, infosAbout)
+                divBreeding.append(namesBreed, infosBreed)
+
+                card.append(about, divAbout, breeding, divBreeding)
+
+                return card
+            }
+
+
+
+        }
 
         // Função que criar o card de status
         const cardStatus = function() {
             const card = document.createElement('div')
             card.classList.add('card')
+            card.classList.add(`${data.types[0].type.name}`)
+
 
             const status = document.createElement('div')
             status.classList.add('stats')
@@ -676,10 +757,14 @@ export function detailPokes() {
                     idx = 0
                 }
 
-                imgs.style.transform = `translateX(${-idx*400}px)`
+                imgs.style.transform = `translateX(${-idx*375}px)`
             }
             setInterval(carrosel, 3000)
         }
+
+        let carousel = createCarousel(data.sprites)
+
+        let about = await createAbout(data)
 
         //Fetch para criar a linha evolutoria
 
@@ -689,9 +774,6 @@ export function detailPokes() {
         let data_evolution = await response_evolution.json()
 
         let evolution = await createEvolution(data_evolution.evolution_chain.url)
-
-
-
 
         const container = document.getElementById('container-detailPokes')
 

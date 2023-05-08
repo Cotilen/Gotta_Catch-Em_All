@@ -237,7 +237,7 @@ class card_regions extends HTMLElement {
         const css = document.createElement('style')
         css.textContent = `
         .card {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             --background: linear-gradient(to left, #7AC74C 0%, #A6B91A 100%);
             width: 260px;
             height: 350px;
@@ -403,7 +403,7 @@ class div_games extends HTMLElement {
         
         .games {
             display: flex;
-            gap: 70px;
+            gap: 4rem;
         }
         
         .imagem-games {
@@ -445,6 +445,12 @@ class div_games extends HTMLElement {
         }
         #null{
             display:none;
+        }
+
+        @media (max-width: 450px) {
+            .games{
+                gap:1rem;
+            }
         }
         `
 
