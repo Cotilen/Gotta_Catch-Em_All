@@ -108,6 +108,11 @@ footer {
     display: flex;
 }
 
+.nav-img {
+    position: relative;
+    z-index: -999;
+}
+
 @media (max-width: 768px) {
     .menu--open {
         display: block;
@@ -136,9 +141,6 @@ footer {
 @media (max-width: 600px) {
     main {
         width: 375px;
-    }
-    header img {
-        display: none;
     }
     #container img {
         width: 350px;
