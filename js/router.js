@@ -5,7 +5,7 @@ import { appPokedex, detailPokes, detailRegion, games, regions } from './app.js'
 
 
 const routes = {
-    "/Gotta_Catch-Em_All/": "/Gotta_Catch-Em_All/pages/home.html",
+    "/": "/Gotta_Catch-Em_All/pages/home.html",
     "/Gotta_Catch-Em_All/pokedex": "/Gotta_Catch-Em_All/pages/pokedex.html",
     "/Gotta_Catch-Em_All/games": "/Gotta_Catch-Em_All/pages/games.html",
     "/Gotta_Catch-Em_All/regions": "/Gotta_Catch-Em_All/pages/regions.html",

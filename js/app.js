@@ -14,9 +14,6 @@ function menu() {
 
 menu()
 
-
-
-
 //Função para carregar a pagina pokedex
 export function appPokedex() {
 
@@ -169,7 +166,7 @@ export function games() {
 
                 const div = document.createElement('div-games')
 
-                div.setAttribute('img', '../images/pokebola.png')
+                div.setAttribute('img', './images/pokebola.png')
                 div.setAttribute('name', `${nameGame}  ${nameGame2}`)
                 div.setAttribute('game', group.name)
                 if (group.name2 != undefined)
@@ -201,7 +198,7 @@ export function regions() {
         card.id = pokeDetail.id
         card.generation = pokeDetail.name
         card.region = pokeDetail.main_region.name
-        card.img = `../images/regioes/${pokeDetail.main_region.name}.png`
+        card.img = `./images/regioes/${pokeDetail.main_region.name}.png`
 
         return card
     }
