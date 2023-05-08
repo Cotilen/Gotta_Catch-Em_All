@@ -242,7 +242,7 @@ main img {
 }
 
 @media (max-width: 600px) {
-    h1 {
+    .evolution h1 {
         font-size: 1rem;
     }
 }

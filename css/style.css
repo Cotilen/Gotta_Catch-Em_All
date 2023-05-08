@@ -59,6 +59,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    font-family: games;
 }
 
 #container-games {

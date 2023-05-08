@@ -66,7 +66,7 @@ export function appPokedex() {
             .then((pokemons = []) => pokemons.map((pokes) => {
 
                 const link = document.createElement('a')
-                link.href = "/detailPokes"
+                link.href = "/Gotta_Catch-Em_All/detailPokes"
                 link.setAttribute('onclick', 'route()')
 
                 const pokedex = document.createElement('card-pokemon')
@@ -250,7 +250,7 @@ export function regions() {
 
                 const link = document.createElement('a')
                 link.id = regiao.region
-                link.href = "/detailRegions"
+                link.href = "/Gotta_Catch-Em_All/detailRegions"
                 link.setAttribute('onclick', 'route()')
 
 
@@ -290,7 +290,7 @@ export function detailRegion() {
         const card = {}
         if (pokeDetail.main_region.name == localStorage.getItem('nameRegion')) {
             card.region = pokeDetail.main_region.name
-            card.img = `../images/regioes/${pokeDetail.main_region.name}.png`
+            card.img = `./images/regioes/${pokeDetail.main_region.name}.png`
             if (pokeDetail.version_groups.length != 1) {
                 card.games = `Game: ${pokeDetail.version_groups[0].name}`
             }

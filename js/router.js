@@ -5,7 +5,7 @@ import { appPokedex, detailPokes, detailRegion, games, regions } from './app.js'
 
 
 const routes = {
-    "/": "/Gotta_Catch-Em_All/pages/home.html",
+    "/Gotta_Catch-Em_All/": "/Gotta_Catch-Em_All/pages/home.html",
     "/Gotta_Catch-Em_All/pokedex": "/Gotta_Catch-Em_All/pages/pokedex.html",
     "/Gotta_Catch-Em_All/games": "/Gotta_Catch-Em_All/pages/games.html",
     "/Gotta_Catch-Em_All/regions": "/Gotta_Catch-Em_All/pages/regions.html",
@@ -20,6 +20,8 @@ export const route = async() => {
     const path = window.location.pathname;
     const route = routes[path];
     console.log(path);
+    console.log(route);
+
 
     const response = await fetch(route);
     const html = await response.text();
@@ -29,9 +31,9 @@ export const route = async() => {
     if (path == '/Gotta_Catch-Em_All/pokedex') {
         console.log('pokedex');
         appPokedex()
-    } else if (path == '/') {
+    } else if (path == '/Gotta_Catch-Em_All/') {
         console.log('home');
-    } else if (route == '/Gotta_Catch-Em_All/pages/games.html') {
+    } else if (path == '/Gotta_Catch-Em_All/games') {
         console.log('Games');
         games()
     } else if (path == '/Gotta_Catch-Em_All/regions') {

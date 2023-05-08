@@ -3,14 +3,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
 }
 
 .region-image {
     max-width: 800px;
     width: auto;
     height: auto;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .region {

@@ -479,12 +479,12 @@ class div_games extends HTMLElement {
 
         const game = document.createElement('img')
         game.classList.add('imagem-games')
-        game.src = `../images/games/${this.game}.png`
+        game.src = `./images/games/${this.game}.png`
         game.id = this.game
 
         const game2 = document.createElement('img')
         game2.classList.add('imagem-games')
-        game2.src = `../images/games/${this.game_2}.png`
+        game2.src = `./images/games/${this.game_2}.png`
         game2.id = this.game_2
 
         if (this.game_2 == null) {
