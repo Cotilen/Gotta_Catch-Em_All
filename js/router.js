@@ -5,12 +5,12 @@ import { appPokedex, detailPokes, detailRegion, games, regions } from './app.js'
 
 
 const routes = {
-    "/": "/pages/home.html",
-    "/pokedex": "/pages/pokedex.html",
-    "/games": "/pages/games.html",
-    "/regions": "/pages/regions.html",
-    "/detailRegions": "/pages/detailRegions.html",
-    "/detailPokes": "/pages/detailPokes.html"
+    "/Gotta_Catch-Em_All/": "/Gotta_Catch-Em_All/pages/home.html",
+    "/Gotta_Catch-Em_All/pokedex": "/Gotta_Catch-Em_All/pages/pokedex.html",
+    "/Gotta_Catch-Em_All/games": "/Gotta_Catch-Em_All/pages/games.html",
+    "/Gotta_Catch-Em_All/regions": "/Gotta_Catch-Em_All/pages/regions.html",
+    "/Gotta_Catch-Em_All/detailRegions": "/Gotta_Catch-Em_All/pages/detailRegions.html",
+    "/Gotta_Catch-Em_All/detailPokes": "/Gotta_Catch-Em_All/pages/detailPokes.html"
 }
 
 export const route = async() => {
@@ -26,23 +26,23 @@ export const route = async() => {
 
     document.getElementById("root").innerHTML = html;
 
-    if (path == '/pokedex') {
+    if (path == '/Gotta_Catch-Em_All/pokedex') {
         console.log('pokedex');
         appPokedex()
     } else if (path == '/') {
         console.log('home');
-    } else if (routes == '/pages/games.html') {
+    } else if (route == '/Gotta_Catch-Em_All/pages/games.html') {
         console.log('Games');
         games()
-    } else if (path == '/regions') {
+    } else if (path == '/Gotta_Catch-Em_All/regions') {
         // console.log('Regions');
         console.log(localStorage.getItem('nameRegion'))
         regions()
-    } else if (path == '/detailRegions') {
+    } else if (path == '/Gotta_Catch-Em_All/detailRegions') {
         console.log("Detalhe Região");
         console.log(localStorage.getItem('nameRegion'));
         detailRegion()
-    } else if (path == '/detailPokes') {
+    } else if (path == '/Gotta_Catch-Em_All/detailPokes') {
         console.log('Pokes');
         detailPokes()
     }
