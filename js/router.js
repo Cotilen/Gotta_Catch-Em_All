@@ -31,7 +31,7 @@ export const route = async() => {
         appPokedex()
     } else if (path == '/') {
         console.log('home');
-    } else if (path == '/games') {
+    } else if (routes == '/pages/games.html') {
         console.log('Games');
         games()
     } else if (path == '/regions') {
