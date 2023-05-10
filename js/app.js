@@ -66,7 +66,7 @@ export function appPokedex() {
             .then((pokemons = []) => pokemons.map((pokes) => {
 
                 const link = document.createElement('a')
-                link.href = "/Gotta_Catch-Em_All/detailPokes"
+                link.href = "/detailPokes"
                 link.setAttribute('onclick', 'route()')
 
                 const pokedex = document.createElement('card-pokemon')
@@ -250,7 +250,7 @@ export function regions() {
 
                 const link = document.createElement('a')
                 link.id = regiao.region
-                link.href = "/Gotta_Catch-Em_All/detailRegions"
+                link.href = "/detailRegions"
                 link.setAttribute('onclick', 'route()')
 
 
