@@ -4,7 +4,7 @@
 |![](./images/mobile.png)|![](./images/desktop.png)|
 |                     |                        |
 
-[Clique aqui](https://cotilen.github.io/Gotta_Catch-Em_All/ para acessar o site!
+[Clique aqui](https://gotta-catch.netlify.app/) para acessar o site!
 
 ## **Sobre** 
 
