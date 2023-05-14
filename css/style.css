@@ -7,10 +7,12 @@ body {
     letter-spacing: .2rem;
 }
 
-button {
+.pagination button {
     background-color: tomato;
     width: 100px;
     height: 25px;
+    border-radius: 1rem;
+    border: 2px solid #000;
 }
 
 .pagination {
