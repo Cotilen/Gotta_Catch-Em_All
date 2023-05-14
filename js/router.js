@@ -20,6 +20,8 @@ export const route = async() => {
     const path = window.location.pathname;
     const route = routes[path];
     console.log(path);
+    console.log(route);
+
 
     const response = await fetch(route);
     const html = await response.text();

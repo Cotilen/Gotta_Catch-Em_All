@@ -81,6 +81,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    font-family: games;
 }
 
 #container-games {
@@ -116,6 +117,38 @@ footer {
     gap: 3rem;
 }
 
+.menu-button {
+    display: none;
+    /* esconde o botão em telas maiores */
+}
+
+.menu {
+    display: none;
+    /* esconde o menu por padrão */
+}
+
+.menu-ul {
+    display: flex;
+}
+
+.nav-img {
+    position: relative;
+    z-index: -999;
+}
+
+@media (max-width: 768px) {
+    .menu--open {
+        display: block;
+    }
+    #menu-container {
+        display: none;
+    }
+    .menu-button {
+        display: block;
+        /* exibe o botão em telas menores */
+    }
+}
+
 @media (max-width: 900px) {
     .pokemon-img {
         display: none;
@@ -131,9 +164,6 @@ footer {
 @media (max-width: 600px) {
     main {
         width: 375px;
-    }
-    header img {
-        display: none;
     }
     #container img {
         width: 350px;

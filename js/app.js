@@ -2,6 +2,18 @@
 
 import { route } from './router.js'
 
+function menu() {
+
+    const menuButton = document.querySelector('.menu-button');
+    const menu = document.querySelector('.menu');
+
+    menuButton.addEventListener('click', function() {
+        menu.classList.toggle('menu--open');
+    });
+}
+
+menu()
+
 //Função para carregar a pagina pokedex
 export function appPokedex() {
 
@@ -176,7 +188,7 @@ export function games() {
 
                 const div = document.createElement('div-games')
 
-                div.setAttribute('img', '../images/pokebola.png')
+                div.setAttribute('img', './images/pokebola.png')
                 div.setAttribute('name', `${nameGame}  ${nameGame2}`)
                 div.setAttribute('game', group.name)
                 if (group.name2 != undefined)
@@ -208,7 +220,7 @@ export function regions() {
         card.id = pokeDetail.id
         card.generation = pokeDetail.name
         card.region = pokeDetail.main_region.name
-        card.img = `../images/regioes/${pokeDetail.main_region.name}.png`
+        card.img = `./images/regioes/${pokeDetail.main_region.name}.png`
 
         return card
     }
@@ -300,7 +312,7 @@ export function detailRegion() {
         const card = {}
         if (pokeDetail.main_region.name == localStorage.getItem('nameRegion')) {
             card.region = pokeDetail.main_region.name
-            card.img = `../images/regioes/${pokeDetail.main_region.name}.png`
+            card.img = `./images/regioes/${pokeDetail.main_region.name}.png`
             if (pokeDetail.version_groups.length != 1) {
                 card.games = `Game: ${pokeDetail.version_groups[0].name}`
             }
