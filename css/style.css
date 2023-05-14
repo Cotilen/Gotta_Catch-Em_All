@@ -7,6 +7,28 @@ body {
     letter-spacing: .2rem;
 }
 
+button {
+    background-color: tomato;
+    width: 100px;
+    height: 25px;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 1100px;
+    padding: 1rem;
+    order: 1;
+}
+
+.pokedexPoke {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 card-regions {
     position: relative;
     z-index: -999;

@@ -5,6 +5,10 @@ import { route } from './router.js'
 //Função para carregar a pagina pokedex
 export function appPokedex() {
 
+    const maxRecords = 1281
+    const limit = 40
+    let offset = 0
+
     const pokeApi = {}
 
     function convertPokeApiDetailToGeneration(pokeDetail) {
@@ -48,7 +52,7 @@ export function appPokedex() {
         fetch('https://pokeapi.co/api/v2/pokemon/5')
     ]).then((results) => {})
 
-    const pokedex = function(offset = 0, limit = 1282) {
+    const pokedex = function(offset, limit) {
 
         pokeApi.getGenerations(offset, limit)
             .then((pokemons = []) => pokemons.map((pokes) => {
@@ -79,15 +83,33 @@ export function appPokedex() {
 
             })).then((card) => {
 
-
-
                 const div = document.getElementById('container-pokedex')
 
-                div.replaceChildren(...card)
+                const pokedex = document.createElement('div')
+                pokedex.classList.add('pokedexPoke')
+
+                pokedex.append(...card)
+
+                div.append(pokedex)
             })
 
     }
-    pokedex()
+    const loadMoreButton = document.getElementById('loadMore')
+
+    loadMoreButton.addEventListener('click', () => {
+        offset += limit
+
+        const qtRecord = offset + limit
+
+        if (qtRecord >= maxRecords) {
+            const newLimit = maxRecords - offset
+            pokedex(offset, newLimit)
+
+            loadMoreButton.parentElement.remove(loadMoreButton)
+        } else
+            pokedex(offset, limit)
+    })
+    pokedex(0, 40)
 }
 
 //Função para carregar a pagina Games
